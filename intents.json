@@ -1,0 +1,18 @@
+{"intents": [
+    {"tag": "greeting",
+    "patterns": ["Hi", "Hello", "Whatsup", "How are you", "How far", "Good Morning"],
+    "responses": ["Hello", "I dey", "I am fine", "Good Morning"],
+    "context_set": ""
+},
+{"tag": "goodbyes",
+    "patterns": ["Bye", "Goodbye", "See you", "Take care", "Have a good day", "Over and Out"],
+    "responses": ["Bye bye", "See you soon", "okay", "Take care"],
+    "context_set": ""
+},
+{"tag": "department",
+    "patterns": ["Computer Science", "Department", "Physical science", "Comp Sci", "csc"],
+    "responses": ["Department?", "Computer Science Student", "Faculty of Physical Science", "Is that your department?"],
+    "context_set": ""
+}
+]}
+
