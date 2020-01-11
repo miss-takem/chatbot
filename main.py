@@ -15,6 +15,8 @@ with open("intents.json") as file:
 #this try block handles the need to continously repeat the block of 
 #below
 
+#KNOW THAT if you change anything in your intents file, you must must come here and add x
+#below the try block
 try:
     with open("data.pickle", "rb") as f:
         words, labels, training, output = pickle.load(f)
@@ -66,8 +68,8 @@ except:
     training = numpy.array(training)
     output = numpy.array(output)
 
-    with open("data.pickle", "rb") as f:
-        words, labels, training, output = pickle.load(f)
+    with open("data.pickle", "wb") as f:
+        pickle.dump((words, labels, training, output), f)
 
     #video part 3 begins here
     #building the neural network model using tensorflow
@@ -83,5 +85,57 @@ net = tflearn.regression(net)
 
 model = tflearn.DNN(net)
 
-model.fit(training, output, n_epoch= 1000, batch_size = 8, show_metric = True)
-model.save("model.tflearn")
+#model already exist, so no need to retrain it. use try to catch this
+   
+try:
+    model.load("model.tflearn")
+except: 
+    model.fit(training, output, n_epoch= 1000, batch_size = 8, show_metric = True)
+    model.save("model.tflearn")
+
+      #  words, labels, training, output = pi
+
+def bag_of_words(s, words):
+    bag = [0 for _ in range(len(words))]
+
+    s_words = nltk.word_tokenize(s)
+    s_words = [stemmer.stem(word.lower()) for word in s_words]
+
+    for se in s_words:
+        for i, w in enumerate(words):
+            if w == se:
+                bag[i] = 1
+
+    return numpy.array(bag)
+
+
+#part 4 video. using the model to start chatting with model
+def chat(): 
+    print("Welcome! You can start chating now( type 'quit' to end)")
+    while True:
+        inp = input("You: ")
+        if inp.lower() == "quit":
+            break
+
+        results = model.predict([bag_of_words(inp, words)])[0]
+         #at the point,the output is a probability
+        results_index = numpy.argmax(results)
+         #at this point, the output is index of the greatest possible result from the probability
+        tag = labels[results_index]
+         #at this point, the output is the tag which the index belongs to
+        
+        if results[results_index] > 0.6:
+            #this if statement determines how high the percentage of the probability must be to accepted
+        
+            for tg in data["intents"]:
+                if tg['tag'] == tag:
+                    responses = tg['responses']
+
+            print(random.choices(responses))
+        else:
+            print("I do not understand that. Could you ask another question?")
+
+chat()
+             
+
+    
