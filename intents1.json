@@ -1,0 +1,33 @@
+{"intents": [
+    {"tag": "greeting",
+    "patterns": ["Hi", "Hello", "Whatsup", "How are you", "How far", "Good Morning"],
+    "responses": ["Hello, how may I help you", "Hi, Ask me anything", "Nice to meet you!", "Goodday, what is your question"],
+    "context_set": ""
+},
+{"tag":"dues",
+    "patterns": ["How much is my department's dues", "account details", "account details for my deparmental dues", "How do I pay my departmental dues",
+         "where do I pay my departmental dues", "Who do I pay my departmental dues to" ],
+    "responses": ["Which department do you belong to", "What department are you in", "What department are you asking about.. Type csc for computer science"],
+    "context_set": ""
+},
+{"tag": "computerScience",
+    "patterns": ["Department of Computer SCience", "computer science account details", "csc", "departmental dues", "account details for the department of Computer science", "computer science ", "computer science department"],
+    "responses": ["Computer Science departmental dues is 4000naira for freshmen and 2500naira for returning students. To be paid at Unical Microfinance Bank with account number as 0110954320 and account name as -Department of Computer Science-"],
+    "context_set": ""
+},
+{"tag": "results",
+    "patterns": ["Where do I check my result", "How can I check my result", "who is in charge of results", "result"],
+    "responses": ["Results are viewed in the offices ofthe following lecturers: Mr Ofem for year 1, Mr Ibor for year 2, Mr Bukie for year 3 and Dr Ele for year 4"],
+    "context_set": ""
+},
+{"tag": "screening",
+    "patterns": ["What is the screening process", "how do I do my screening", "who is incharge of screening", "what do I need for screening", "screening"],
+    "responses": ["the screening process is carried out in the office of Dr Arikpo. Head there to get the detailed proceedings", "check the office of Dr Arikpo for guidance ", "proceed to the general office for help"],
+    "context_set": ""
+},
+{"tag": "goodbyes",
+    "patterns": ["Bye", "Goodbye", "See you", "Have a good day", "Over and Out", "help"],
+    "responses": ["Bye bye", "It was nice chatting with you", "Hope I was of help to you", "Come back anytime"],
+    "context_set": ""
+}
+]}
